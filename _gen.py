@@ -6,13 +6,13 @@ import html, os
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATE = '1 October 2026'
 GAMES = [  # (文件名, 英文名, 包名)
-    ('catcubeaway', 'Cat Cube Away', 'com.jyzgo.catcubeaway'),
-    ('catnapsudoku', 'Cat Nap Sudoku', 'com.jyzgo.catnapsudoku'),
-    ('catwatersort', 'Meow Latte Sort', 'com.jyzgo.meowlattesort'),
-    ('jaderings', 'Jade Ring Unlock', 'com.jyzgo.jaderingunlock'),
-    ('arrowdashvane', 'Arrow Dashvane', 'com.jyzgo.arrowdashvane'),
-    ('puddingcatblocks', 'Pudding Cat Blocks', 'com.jyzgo.puddingcatblocks'),
-    ('haunteddorm', 'Nap Till Dawn', 'com.jyzgo.haunteddorm'),
+    ('catcubeaway', 'Cat Cube Away', 'com.adevegame.catcubeaway'),
+    ('catnapsudoku', 'Cat Nap Sudoku', 'com.adevegame.catnapsudoku'),
+    ('catwatersort', 'Meow Latte Sort', 'com.adevegame.meowlattesort'),
+    ('jaderings', 'Jade Ring Unlock', 'com.adevegame.jaderingunlock'),
+    ('arrowdashvane', 'Arrow Dashvane', 'com.adevegame.arrowdashvane'),
+    ('puddingcatblocks', 'Pudding Cat Blocks', 'com.adevegame.puddingcatblocks'),
+    ('haunteddorm', 'Nap Till Dawn', 'com.adevegame.naptilldawn'),
 ]
 
 TPL = '''<!DOCTYPE html>
