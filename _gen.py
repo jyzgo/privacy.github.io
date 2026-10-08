@@ -1,10 +1,14 @@
 """生成各款「零采集」游戏的隐私政策页（<slug>.html）。改文案改这里，重跑：python _gen.py
 零采集 = 安卓壳 ads.provider=none、无 INTERNET 权限、游戏不发任何网络请求。
-哪款以后接了广告 / 统计，就从 GAMES 里移出来，单独写一页披露（参考 index.html 的 AdMob 版）。"""
+接了 AdMob 的放进 ADS：页面从 index.html（AdMob 披露版，Solitaire 用的那份）派生，只换应用名 / 包名 / 日期，
+文案只维护 index.html 一处。接了 AdMob 以外的 SDK（统计等）要另写披露，别塞进这两类。"""
 import html, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATE = '1 October 2026'
+DATE_ADS = '8 October 2026'
+# 2026-10-08 起这 6 款安卓首发带 AdMob（minik.json android.ads.provider=admob）
+ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks'}
 GAMES = [  # (文件名, 英文名, 包名)
     ('catcubeaway', 'Cat Cube Away', 'com.adevegame.catcubeaway'),
     ('catnapsudoku', 'Cat Nap Sudoku', 'com.adevegame.catnapsudoku'),
@@ -97,7 +101,28 @@ we will update this page and the effective date above before that version is rel
 </html>
 '''
 
+with open(os.path.join(HERE, 'index.html'), encoding='utf-8') as f:
+    ADS_SRC = f.read()
+
+
+def ads_page(name, pkg):
+    s = ADS_SRC
+    for old, new in [
+        ('<title>Privacy Policy — Adevegames</title>', f'<title>Privacy Policy — {name}</title>'),
+        ('<div class="meta">Adevegames &middot; Effective 27 September 2026</div>',
+         f'<div class="meta">{name} &middot; Adevegames &middot; Effective {DATE_ADS}</div>'),
+        ('It applies to <strong>Solitaire Collection</strong> (<code>com.solitaire.adevegame</code>)\nand our other published apps.</p>',
+         f'It applies to <strong>{name}</strong> (<code>{pkg}</code>).</p>'),
+        ('Adevegames &middot; Last updated 27 September 2026', f'Adevegames &middot; Last updated {DATE_ADS}'),
+    ]:
+        if s.count(old) != 1:
+            raise SystemExit(f'index.html 里找不到（或不唯一）: {old[:60]}… —— index.html 改过就同步改这里')
+        s = s.replace(old, new)
+    return s
+
+
 for slug, name, pkg in GAMES:
+    page = ads_page(html.escape(name), pkg) if slug in ADS else TPL.format(name=html.escape(name), pkg=pkg, date=DATE)
     with open(os.path.join(HERE, slug + '.html'), 'w', encoding='utf-8', newline='\n') as f:
-        f.write(TPL.format(name=html.escape(name), pkg=pkg, date=DATE))
+        f.write(page)
     print('https://jyzgo.github.io/privacy.github.io/%s.html' % slug)

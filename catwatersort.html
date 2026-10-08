@@ -7,73 +7,142 @@
 <style>
   :root { --fg:#1b1d1f; --muted:#5c6470; --bg:#ffffff; --card:#f6f7f9; --line:#e3e6ea; --accent:#1a6b3c; }
   @media (prefers-color-scheme: dark) {
-    :root { --fg:#e8eaed; --muted:#9aa4b2; --bg:#15181b; --card:#1e2226; --line:#2c3238; --accent:#6fd3a8; }
+    :root:not([data-theme="light"]) { --fg:#e8eaed; --muted:#9aa4b2; --bg:#15181b; --card:#1e2226; --line:#2c3238; --accent:#6fd3a8; }
   }
   * { box-sizing: border-box; }
   body { margin:0; background:var(--bg); color:var(--fg);
          font:16px/1.65 -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif; }
   .wrap { max-width: 760px; margin: 0 auto; padding: 48px 16px 80px; }
-  h1 { font-size: 28px; margin: 0 0 6px; }
-  h2 { font-size: 19px; margin: 36px 0 10px; }
+  h1 { font-size: 28px; margin: 0 0 6px; letter-spacing: -.01em; }
+  h2 { font-size: 19px; margin: 36px 0 10px; letter-spacing: -.005em; }
   .meta { color: var(--muted); font-size: 14px; margin-bottom: 32px; }
+  p, li { color: var(--fg); }
   ul { padding-left: 22px; }
   li { margin: 6px 0; }
   a { color: var(--accent); }
-  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px; padding: 16px 18px; margin: 18px 0; }
-  .card p { margin: 0; }
-  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 14px; }
+  .card { background: var(--card); border: 1px solid var(--line); border-radius: 10px;
+          padding: 16px 18px; margin: 18px 0; }
+  .card p:first-child { margin-top: 0; }
+  .card p:last-child { margin-bottom: 0; }
+  table { width:100%; border-collapse: collapse; margin: 14px 0; font-size: 15px; }
+  th, td { text-align: left; padding: 9px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
+  th { color: var(--muted); font-weight: 600; font-size: 13px; text-transform: uppercase; letter-spacing: .04em; }
+  footer { margin-top: 48px; padding-top: 20px; border-top: 1px solid var(--line);
+           color: var(--muted); font-size: 14px; }
 </style>
 </head>
 <body>
 <div class="wrap">
 
 <h1>Privacy Policy</h1>
-<div class="meta">Meow Latte Sort &middot; Adevegames &middot; Effective 1 October 2026</div>
+<div class="meta">Meow Latte Sort &middot; Adevegames &middot; Effective 8 October 2026</div>
 
-<p>This policy applies to the mobile game <strong>Meow Latte Sort</strong> (<code>com.adevegame.meowlattesort</code>),
-published by <strong>Adevegames</strong>.</p>
+<p>This policy explains what information the mobile applications published by
+<strong>Adevegames</strong> on Google Play collect, why, and what you can do about it.
+It applies to <strong>Meow Latte Sort</strong> (<code>com.adevegame.meowlattesort</code>).</p>
 
 <div class="card">
-<p><strong>The short version.</strong> Meow Latte Sort does not collect, store on any server, or share
-any personal information. It has no ads, no analytics, no accounts and no in-app purchases, and it
-does not connect to the internet. Your progress stays on your device.</p>
+<p><strong>The short version.</strong> Our games do not ask for your name, email, phone number
+or location, and they have no accounts to sign into. The only information leaving your device
+is what the Google AdMob advertising service needs in order to show ads &mdash; principally your
+device's advertising identifier. Everything else, including your game progress, stays on your
+phone.</p>
 </div>
 
 <h2>Information we collect</h2>
 
-<p>None. The game does not request the internet permission and sends no data to us or to any
-third party. We do not collect your name, email address, phone number, location, device
-identifiers, advertising ID, contacts, photos or any usage statistics.</p>
+<table>
+  <tr><th>Data</th><th>Collected by</th><th>Why</th></tr>
+  <tr>
+    <td><strong>Advertising ID</strong> and related device identifiers</td>
+    <td>Google AdMob (embedded in the app)</td>
+    <td>To select and deliver advertisements, to limit how often the same ad is shown, and to
+        detect invalid or fraudulent ad traffic</td>
+  </tr>
+  <tr>
+    <td>Coarse technical data sent with ad requests (device model, operating system version,
+        general region derived from IP address, language)</td>
+    <td>Google AdMob</td>
+    <td>To serve ads that are technically compatible with your device</td>
+  </tr>
+</table>
+
+<p>This data is transmitted over encrypted connections (HTTPS).</p>
+
+<h2>Information we do <em>not</em> collect</h2>
+
+<ul>
+  <li>No name, email address, phone number or any other contact detail</li>
+  <li>No precise or approximate GPS location</li>
+  <li>No contacts, photos, files, messages, calendar or microphone data</li>
+  <li>No user accounts &mdash; there is nothing to register for and nothing to sign into</li>
+  <li>No analytics or usage data is sent to us. Our games record gameplay events (such as a
+      round starting or finishing) only in memory and in local device storage, to help the app
+      function. These records are never transmitted anywhere and are deleted when you uninstall
+      the app.</li>
+</ul>
 
 <h2>Data stored on your device</h2>
 
-<p>Your game progress, settings and statistics are saved only in the app's local storage on your
-device. They are never uploaded, and they are permanently removed when you uninstall the app or
-clear its data in your device settings.</p>
+<p>Your game progress, statistics, coin balance, unlocked items and settings are saved in your
+device's local application storage. They are not uploaded to us or to anyone else, are not
+backed up to our servers, and are permanently removed when you uninstall the app or clear the
+app's data from your device settings.</p>
 
 <h2>Third-party services</h2>
 
-<p>The game contains no third-party advertising, analytics or tracking SDKs. Google Play
-processes information when you download or update an app; that is covered by Google's own
-<a href="https://policies.google.com/privacy" target="_blank" rel="noopener">privacy policy</a>,
-not by this one.</p>
+<p>We use one third-party service that processes data:</p>
+
+<ul>
+  <li><strong>Google AdMob</strong> &mdash; serves the advertisements in our apps.
+      Google's handling of this data is governed by the
+      <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.
+      You can read how Google uses information from apps that use its services at
+      <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>.</li>
+</ul>
+
+<p>Google Play itself also processes information when you download or update an app; that is
+covered by Google's own policy, not by ours.</p>
+
+<h2>Your choices</h2>
+
+<ul>
+  <li><strong>Reset your advertising ID</strong> &mdash; Android Settings &rarr; Google &rarr;
+      Ads &rarr; <em>Reset advertising ID</em>. This disconnects future ad data from any previous
+      activity.</li>
+  <li><strong>Turn off ad personalisation</strong> &mdash; Android Settings &rarr; Google &rarr;
+      Ads &rarr; <em>Delete advertising ID</em> (or, on older versions, <em>Opt out of Ads
+      Personalisation</em>). Ads will still appear, but will no longer be personalised.</li>
+  <li><strong>Remove everything</strong> &mdash; uninstalling the app deletes all data it stored
+      on your device.</li>
+</ul>
 
 <h2>Children</h2>
 
-<p>Because the game collects no personal information from anyone, it collects none from
-children.</p>
+<p>Our apps are not directed to children under the age of 13, and we do not knowingly collect
+personal information from children. If you believe a child has provided us with personal
+information, please contact us at the address below and we will take appropriate action.</p>
+
+<h2>Data retention and deletion</h2>
+
+<p>We operate no servers and hold no database of users, so we have no personal data of yours to
+retain or delete. Data held by Google in connection with advertising is retained according to
+Google's policies; you can manage it through your
+<a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener">Google Account privacy controls</a>.</p>
 
 <h2>Changes to this policy</h2>
 
-<p>If a future version of the game starts collecting any information (for example by adding ads),
-we will update this page and the effective date above before that version is released.</p>
+<p>If our apps begin collecting different information, we will update this page and change the
+effective date shown at the top before the change takes effect.</p>
 
 <h2>Contact</h2>
 
 <p>Questions about this policy can be sent to
 <a href="mailto:adevegame@gmail.com">adevegame@gmail.com</a>.</p>
 
-<footer>Adevegames &middot; Last updated 1 October 2026</footer>
+<footer>
+Adevegames &middot; Last updated 8 October 2026
+</footer>
 
 </div>
 </body>
