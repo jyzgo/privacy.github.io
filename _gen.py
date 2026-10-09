@@ -1,7 +1,8 @@
 """生成各款「零采集」游戏的隐私政策页（<slug>.html）。改文案改这里，重跑：python _gen.py
 零采集 = 安卓壳 ads.provider=none、无 INTERNET 权限、游戏不发任何网络请求。
 接了 AdMob 的放进 ADS：页面从 index.html（AdMob 披露版，Solitaire 用的那份）派生，只换应用名 / 包名 / 日期，
-文案只维护 index.html 一处。接了 AdMob 以外的 SDK（统计等）要另写披露，别塞进这两类。"""
+文案只维护 index.html 一处。接了 AdMob 以外的 SDK（统计等）要另写披露，别塞进这两类。
+beatlap.html（间歇计时 App：AdMob + Play 内购）是手写的，不在 GAMES 里，本脚本不碰它。"""
 import html, os
 
 HERE = os.path.dirname(os.path.abspath(__file__))
