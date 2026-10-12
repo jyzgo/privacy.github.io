@@ -121,6 +121,22 @@ def ads_page(name, pkg):
         if s.count(old) != 1:
             raise SystemExit(f'index.html 里找不到（或不唯一）: {old[:60]}… —— index.html 改过就同步改这里')
         s = s.replace(old, new)
+    if pkg == 'com.ballcollision.adeve':
+        s = s.replace('is what the Google AdMob advertising service needs in order to show ads &mdash; principally your\n'
+                      "device's advertising identifier. Everything else, including your game progress, stays on your\nphone.",
+                      'is collected by Google AdMob for advertising, measurement and fraud prevention: device identifiers, '
+                      'IP-derived approximate location, ad and app interactions, and SDK performance diagnostics. '
+                      'Your saved game progress stays on your phone.')
+        s = s.replace('</table>', '''  <tr>
+    <td>App and ad interactions (such as launches, taps and video views), and performance diagnostics
+        (such as launch time, hangs and energy usage)</td>
+    <td>Google AdMob</td>
+    <td>Advertising, analytics and fraud prevention</td>
+  </tr>
+</table>''', 1)
+        s = s.replace('This data is transmitted over encrypted connections (HTTPS).',
+                      'AdMob collects and shares the above data for advertising, analytics and fraud prevention. '
+                      'This data is transmitted over encrypted connections (HTTPS).')
     return s
 
 
