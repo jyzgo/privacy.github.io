@@ -18,6 +18,7 @@ GAMES = [  # (文件名, 英文名, 包名)
     ('arrowdashvane', 'Arrow Dashvane', 'com.adevegame.arrowdashvane'),
     ('puddingcatblocks', 'Pudding Cat Blocks', 'com.adevegame.puddingcatblocks'),
     ('haunteddorm', 'Nap Till Dawn', 'com.adevegame.naptilldawn'),
+    ('ballcollision', 'Ball Collision', 'com.ballcollision.adeve'),  # 2017 年老应用更新，首发无广告
 ]
 
 TPL = '''<!DOCTYPE html>
