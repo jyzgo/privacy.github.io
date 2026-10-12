@@ -9,7 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATE = '1 October 2026'
 DATE_ADS = '8 October 2026'
 # 2026-10-08 起这 6 款安卓首发带 AdMob（minik.json android.ads.provider=admob）
-ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks', 'ballcollision'}
+ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks', 'ballcollision', 'mosaicriders'}
 GAMES = [  # (文件名, 英文名, 包名)
     ('catcubeaway', 'Cat Cube Away', 'com.adevegame.catcubeaway'),
     ('catnapsudoku', 'Cat Nap Sudoku', 'com.adevegame.catnapsudoku'),
@@ -19,6 +19,7 @@ GAMES = [  # (文件名, 英文名, 包名)
     ('puddingcatblocks', 'Pudding Cat Blocks', 'com.adevegame.puddingcatblocks'),
     ('haunteddorm', 'Nap Till Dawn', 'com.adevegame.naptilldawn'),
     ('ballcollision', 'Ball Collision', 'com.ballcollision.adeve'),  # 2.0.2 起接 AdMob
+    ('mosaicriders', 'Mosaic Riders', 'com.adevegame.mosaicriders'),
 ]
 
 TPL = '''<!DOCTYPE html>
@@ -121,7 +122,7 @@ def ads_page(name, pkg):
         if s.count(old) != 1:
             raise SystemExit(f'index.html 里找不到（或不唯一）: {old[:60]}… —— index.html 改过就同步改这里')
         s = s.replace(old, new)
-    if pkg == 'com.ballcollision.adeve':
+    if pkg in ('com.ballcollision.adeve', 'com.adevegame.mosaicriders'):
         s = s.replace('is what the Google AdMob advertising service needs in order to show ads &mdash; principally your\n'
                       "device's advertising identifier. Everything else, including your game progress, stays on your\nphone.",
                       'is collected by Google AdMob for advertising, measurement and fraud prevention: device identifiers, '
