@@ -9,7 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATE = '1 October 2026'
 DATE_ADS = '8 October 2026'
 # 2026-10-08 起这 6 款安卓首发带 AdMob（minik.json android.ads.provider=admob）
-ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks'}
+ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks', 'ballcollision'}
 GAMES = [  # (文件名, 英文名, 包名)
     ('catcubeaway', 'Cat Cube Away', 'com.adevegame.catcubeaway'),
     ('catnapsudoku', 'Cat Nap Sudoku', 'com.adevegame.catnapsudoku'),
@@ -18,7 +18,7 @@ GAMES = [  # (文件名, 英文名, 包名)
     ('arrowdashvane', 'Arrow Dashvane', 'com.adevegame.arrowdashvane'),
     ('puddingcatblocks', 'Pudding Cat Blocks', 'com.adevegame.puddingcatblocks'),
     ('haunteddorm', 'Nap Till Dawn', 'com.adevegame.naptilldawn'),
-    ('ballcollision', 'Ball Collision', 'com.ballcollision.adeve'),  # 2017 年老应用更新，首发无广告
+    ('ballcollision', 'Ball Collision', 'com.ballcollision.adeve'),  # 2.0.2 起接 AdMob
 ]
 
 TPL = '''<!DOCTYPE html>
@@ -108,14 +108,15 @@ with open(os.path.join(HERE, 'index.html'), encoding='utf-8') as f:
 
 
 def ads_page(name, pkg):
+    date = '12 October 2026' if pkg == 'com.ballcollision.adeve' else DATE_ADS
     s = ADS_SRC
     for old, new in [
         ('<title>Privacy Policy — Adevegames</title>', f'<title>Privacy Policy — {name}</title>'),
         ('<div class="meta">Adevegames &middot; Effective 27 September 2026</div>',
-         f'<div class="meta">{name} &middot; Adevegames &middot; Effective {DATE_ADS}</div>'),
+         f'<div class="meta">{name} &middot; Adevegames &middot; Effective {date}</div>'),
         ('It applies to <strong>Solitaire Collection</strong> (<code>com.solitaire.adevegame</code>)\nand our other published apps.</p>',
          f'It applies to <strong>{name}</strong> (<code>{pkg}</code>).</p>'),
-        ('Adevegames &middot; Last updated 27 September 2026', f'Adevegames &middot; Last updated {DATE_ADS}'),
+        ('Adevegames &middot; Last updated 27 September 2026', f'Adevegames &middot; Last updated {date}'),
     ]:
         if s.count(old) != 1:
             raise SystemExit(f'index.html 里找不到（或不唯一）: {old[:60]}… —— index.html 改过就同步改这里')
