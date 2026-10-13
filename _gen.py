@@ -3,7 +3,7 @@
 接了 AdMob 的放进 ADS：页面从 index.html（AdMob 披露版，Solitaire 用的那份）派生，只换应用名 / 包名 / 日期，
 文案只维护 index.html 一处。接了 AdMob 以外的 SDK（统计等）要另写披露，别塞进这两类。
 beatlap.html（间歇计时 App：AdMob + Play 内购）是手写的，不在 GAMES 里，本脚本不碰它。"""
-import html, os
+import html, os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATE = '1 October 2026'
@@ -106,6 +106,21 @@ we will update this page and the effective date above before that version is rel
 
 with open(os.path.join(HERE, 'index.html'), encoding='utf-8') as f:
     ADS_SRC = f.read()
+# index.html 里 <!-- firebase --> … <!-- /firebase --> 是 Solitaire 独有的 Firebase 披露（2026-10-13 接 Crashlytics + Analytics），
+# 派生页不带；index.html 为此改过的几句同样换回纯 AdMob 版。别的游戏接 Firebase 时把它从这里的剥离里放出来。
+ADS_SRC, _n = re.subn(r'<!-- firebase -->\n.*?<!-- /firebase -->\n', '', ADS_SRC, flags=re.S)
+if _n != 5:
+    raise SystemExit(f'index.html 里 firebase 块是 {_n} 个（应为 5）—— 改过 index.html 就同步改这里')
+for _old, _new in [
+    ('  <li>Apart from the Firebase crash reports and usage statistics described above (Solitaire\n'
+     '      Collection only), no analytics or usage data is sent to us.', '  <li>No analytics or usage data is sent to us.'),
+    ('<p>We use the following third-party services that process data:</p>', '<p>We use one third-party service that processes data:</p>'),
+    ('Effective 13 October 2026', 'Effective 27 September 2026'),
+    ('Last updated 13 October 2026', 'Last updated 27 September 2026'),
+]:
+    if ADS_SRC.count(_old) != 1:
+        raise SystemExit(f'index.html 里找不到（或不唯一）: {_old[:60]}…')
+    ADS_SRC = ADS_SRC.replace(_old, _new)
 
 
 def ads_page(name, pkg):

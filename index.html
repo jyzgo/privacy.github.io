@@ -35,7 +35,7 @@
 <div class="wrap">
 
 <h1>Privacy Policy</h1>
-<div class="meta">Adevegames &middot; Effective 27 September 2026</div>
+<div class="meta">Adevegames &middot; Effective 13 October 2026</div>
 
 <p>This policy explains what information the mobile applications published by
 <strong>Adevegames</strong> on Google Play collect, why, and what you can do about it.
@@ -48,6 +48,11 @@ or location, and they have no accounts to sign into. The only information leavin
 is what the Google AdMob advertising service needs in order to show ads &mdash; principally your
 device's advertising identifier. Everything else, including your game progress, stays on your
 phone.</p>
+<!-- firebase -->
+<p><strong>Solitaire Collection</strong> additionally sends crash reports and basic app usage
+statistics (such as app opens and the app version in use) to Google Firebase, so that we can find
+and fix bugs. These are not used for advertising.</p>
+<!-- /firebase -->
 </div>
 
 <h2>Information we collect</h2>
@@ -66,6 +71,22 @@ phone.</p>
     <td>Google AdMob</td>
     <td>To serve ads that are technically compatible with your device</td>
   </tr>
+<!-- firebase -->
+  <tr>
+    <td><strong>Crash logs and diagnostics</strong> (error details and stack traces, device model,
+        operating system version, app version, a Firebase installation identifier)</td>
+    <td>Google Firebase Crashlytics &mdash; Solitaire Collection only</td>
+    <td>To find and fix crashes and errors</td>
+  </tr>
+  <tr>
+    <td><strong>App usage statistics</strong> (app opens, session length, app version, general region
+        derived from IP address, ad impressions, an app instance identifier)</td>
+    <td>Google Analytics for Firebase &mdash; Solitaire Collection only</td>
+    <td>To measure how many people use each version of the app and whether an update causes
+        problems. Not used for advertising or ad personalisation. In the EEA, the UK and
+        Switzerland, usage statistics are stored only if you consent.</td>
+  </tr>
+<!-- /firebase -->
 </table>
 
 <p>This data is transmitted over encrypted connections (HTTPS).</p>
@@ -77,7 +98,8 @@ phone.</p>
   <li>No precise or approximate GPS location</li>
   <li>No contacts, photos, files, messages, calendar or microphone data</li>
   <li>No user accounts &mdash; there is nothing to register for and nothing to sign into</li>
-  <li>No analytics or usage data is sent to us. Our games record gameplay events (such as a
+  <li>Apart from the Firebase crash reports and usage statistics described above (Solitaire
+      Collection only), no analytics or usage data is sent to us. Our games record gameplay events (such as a
       round starting or finishing) only in memory and in local device storage, to help the app
       function. These records are never transmitted anywhere and are deleted when you uninstall
       the app.</li>
@@ -92,7 +114,7 @@ app's data from your device settings.</p>
 
 <h2>Third-party services</h2>
 
-<p>We use one third-party service that processes data:</p>
+<p>We use the following third-party services that process data:</p>
 
 <ul>
   <li><strong>Google AdMob</strong> &mdash; serves the advertisements in our apps.
@@ -100,6 +122,12 @@ app's data from your device settings.</p>
       <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google Privacy Policy</a>.
       You can read how Google uses information from apps that use its services at
       <a href="https://policies.google.com/technologies/partner-sites" target="_blank" rel="noopener">policies.google.com/technologies/partner-sites</a>.</li>
+<!-- firebase -->
+  <li><strong>Google Firebase</strong> (Crashlytics and Google Analytics for Firebase, Solitaire
+      Collection only) &mdash; collects the crash reports and usage statistics described above on
+      our behalf. See
+      <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacy and Security in Firebase</a>.</li>
+<!-- /firebase -->
 </ul>
 
 <p>Google Play itself also processes information when you download or update an app; that is
@@ -116,6 +144,11 @@ covered by Google's own policy, not by ours.</p>
       Personalisation</em>). Ads will still appear, but will no longer be personalised.</li>
   <li><strong>Remove everything</strong> &mdash; uninstalling the app deletes all data it stored
       on your device.</li>
+<!-- firebase -->
+  <li><strong>Change your consent</strong> (EEA, UK and Switzerland) &mdash; in Solitaire Collection,
+      open Settings &rarr; <em>Ad Privacy Settings</em> at any time; your choice there also controls
+      whether usage statistics are stored.</li>
+<!-- /firebase -->
 </ul>
 
 <h2>Children</h2>
@@ -130,6 +163,10 @@ information, please contact us at the address below and we will take appropriate
 retain or delete. Data held by Google in connection with advertising is retained according to
 Google's policies; you can manage it through your
 <a href="https://myaccount.google.com/data-and-privacy" target="_blank" rel="noopener">Google Account privacy controls</a>.</p>
+<!-- firebase -->
+<p>Firebase crash reports are kept for 90 days and usage statistics for 2 months, after which
+they are deleted automatically. They are not linked to your name, email or Google account.</p>
+<!-- /firebase -->
 
 <h2>Changes to this policy</h2>
 
@@ -142,7 +179,7 @@ effective date shown at the top before the change takes effect.</p>
 <a href="mailto:adevegame@gmail.com">adevegame@gmail.com</a>.</p>
 
 <footer>
-Adevegames &middot; Last updated 27 September 2026
+Adevegames &middot; Last updated 13 October 2026
 </footer>
 
 </div>
