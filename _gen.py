@@ -9,7 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATE = '1 October 2026'
 DATE_ADS = '8 October 2026'
 # 2026-10-08 起这 6 款安卓首发带 AdMob（minik.json android.ads.provider=admob）
-ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks', 'ballcollision', 'mosaicriders'}
+ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks', 'ballcollision', 'mosaicriders', 'spelldoku'}
 GAMES = [  # (文件名, 英文名, 包名)
     ('catcubeaway', 'Cat Cube Away', 'com.adevegame.catcubeaway'),
     ('catnapsudoku', 'Cat Nap Sudoku', 'com.adevegame.catnapsudoku'),
@@ -20,6 +20,7 @@ GAMES = [  # (文件名, 英文名, 包名)
     ('haunteddorm', 'Nap Till Dawn', 'com.adevegame.naptilldawn'),
     ('ballcollision', 'Ball Collision', 'com.ballcollision.adeve'),  # 2.0.2 起接 AdMob
     ('mosaicriders', 'Mosaic Riders', 'com.adevegame.mosaicriders'),
+    ('spelldoku', 'Spelldoku', 'com.adevegame.spelldoku'),
 ]
 
 TPL = '''<!DOCTYPE html>
