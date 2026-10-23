@@ -9,7 +9,7 @@ HERE = os.path.dirname(os.path.abspath(__file__))
 DATE = '1 October 2026'
 DATE_ADS = '8 October 2026'
 # 2026-10-08 起这 6 款安卓首发带 AdMob（minik.json android.ads.provider=admob）
-ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks', 'ballcollision', 'mosaicriders', 'spelldoku', 'loftyfloors'}
+ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks', 'ballcollision', 'mosaicriders', 'spelldoku', 'loftyfloors', 'cubeblast3d'}
 GAMES = [  # (文件名, 英文名, 包名)
     ('catcubeaway', 'Cat Cube Away', 'com.adevegame.catcubeaway'),
     ('catnapsudoku', 'Cat Nap Sudoku', 'com.adevegame.catnapsudoku'),
@@ -22,6 +22,7 @@ GAMES = [  # (文件名, 英文名, 包名)
     ('mosaicriders', 'Mosaic Riders', 'com.adevegame.mosaicriders'),
     ('spelldoku', 'Spelldoku', 'com.adevegame.spelldoku'),
     ('loftyfloors', 'Lofty Floors', 'com.adevegame.loftyfloors'),  # BusyTower，首发只带激励（2026-10-16 由误用的 Dream Room 老包名改新包名）
+    ('cubeblast3d', 'Cube Blast 3D: Color Shooter', 'com.adeve.cubeblast3d'),  # CubeShooter，首发带激励 + 插屏
 ]
 
 TPL = '''<!DOCTYPE html>
