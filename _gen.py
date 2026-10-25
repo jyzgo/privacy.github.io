@@ -2,7 +2,8 @@
 零采集 = 安卓壳 ads.provider=none、无 INTERNET 权限、游戏不发任何网络请求。
 接了 AdMob 的放进 ADS：页面从 index.html（AdMob 披露版，Solitaire 用的那份）派生，只换应用名 / 包名 / 日期，
 文案只维护 index.html 一处。接了 AdMob 以外的 SDK（统计等）要另写披露，别塞进这两类。
-beatlap.html（间歇计时 App：AdMob + Play 内购）是手写的，不在 GAMES 里，本脚本不碰它。"""
+beatlap.html（间歇计时 App：AdMob + Play 内购）是手写的，不在 GAMES 里，本脚本不碰它。
+solitaire.html 由 index.html 直接派生（见下方 SOLITAIRE），改 Solitaire 文案还是改 index.html。"""
 import html, os, re
 
 HERE = os.path.dirname(os.path.abspath(__file__))
@@ -115,6 +116,17 @@ we will update this page and the effective date above before that version is rel
 
 with open(os.path.join(HERE, 'index.html'), encoding='utf-8') as f:
     ADS_SRC = f.read()
+# solitaire.html = index.html 原样（Solitaire 的完整披露：AdMob + Firebase + PGS），只把标题 / 适用范围收成单款。
+# 2026-10-25 起 Solitaire 的 Play 后台 / listing.json 填这一页（同别的款一样一款一页）；index.html 留作站点首页和文案母本。
+SOLITAIRE = ADS_SRC
+for _old, _new in [
+    ('<title>Privacy Policy — Adevegames</title>', '<title>Privacy Policy — Solitaire Collection</title>'),
+    ('<div class="meta">Adevegames &middot; Effective', '<div class="meta">Solitaire Collection &middot; Adevegames &middot; Effective'),
+    ('(<code>com.solitaire.adevegame</code>)\nand our other published apps.</p>', '(<code>com.solitaire.adevegame</code>).</p>'),
+]:
+    if SOLITAIRE.count(_old) != 1:
+        raise SystemExit(f'index.html 里找不到（或不唯一）: {_old[:60]}… —— 改过 index.html 就同步改这里')
+    SOLITAIRE = SOLITAIRE.replace(_old, _new)
 # index.html 里 <!-- firebase --> … <!-- /firebase --> 是 Solitaire 独有的 Firebase 披露（2026-10-13 接 Crashlytics + Analytics），
 # 派生页不带；index.html 为此改过的几句同样换回纯 AdMob 版。别的游戏接 Firebase 时把它从这里的剥离里放出来。
 ADS_SRC, _n = re.subn(r'<!-- firebase -->\n.*?<!-- /firebase -->\n', '', ADS_SRC, flags=re.S)
@@ -191,3 +203,6 @@ for slug, name, pkg in GAMES:
     with open(os.path.join(HERE, slug + '.html'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(page)
     print('https://jyzgo.github.io/privacy.github.io/%s.html' % slug)
+with open(os.path.join(HERE, 'solitaire.html'), 'w', encoding='utf-8', newline='\n') as f:
+    f.write(SOLITAIRE)
+print('https://jyzgo.github.io/privacy.github.io/solitaire.html')
