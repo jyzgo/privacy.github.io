@@ -8,8 +8,14 @@ import html, os, re
 HERE = os.path.dirname(os.path.abspath(__file__))
 DATE = '1 October 2026'
 DATE_ADS = '8 October 2026'
+DATE_PGS = '25 October 2026'
 # 2026-10-08 起这 6 款安卓首发带 AdMob（minik.json android.ads.provider=admob）
 ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvane', 'puddingcatblocks', 'ballcollision', 'mosaicriders', 'spelldoku', 'loftyfloors', 'cubeblast3d'}
+# 接了 Play 游戏服务（PGS v2：登录 + 成就 + 云存档，2026-10-25 Level Up 批）的页保留 index.html 的 <!-- pgs --> 块；
+# 2026-10-25 GamePublish/levelup_todo.md 全部 12 款一次加入（index.html = Solitaire 本身就带）；新游戏接 PGS 时加文件名（不是 slug）。
+# Data safety 同时换 +pgs 档（GamePublish/tools/play_datasafety.py）。
+PGS = {'puddingcatblocks', 'jaderings', 'spelldoku', 'catwatersort', 'arrowdashvane', 'catnapsudoku',
+       'ballcollision', 'catcubeaway', 'mosaicriders', 'loftyfloors', 'cubeblast3d'}
 GAMES = [  # (文件名, 英文名, 包名)
     ('catcubeaway', 'Cat Cube Away', 'com.adevegame.catcubeaway'),
     ('catnapsudoku', 'Cat Nap Sudoku', 'com.adevegame.catnapsudoku'),
@@ -117,18 +123,39 @@ if _n != 5:
 for _old, _new in [
     ('  <li>Apart from the Firebase crash reports and usage statistics described above (Solitaire\n'
      '      Collection only), no analytics or usage data is sent to us.', '  <li>No analytics or usage data is sent to us.'),
-    ('<p>We use the following third-party services that process data:</p>', '<p>We use one third-party service that processes data:</p>'),
-    ('Effective 13 October 2026', 'Effective 27 September 2026'),
-    ('Last updated 13 October 2026', 'Last updated 27 September 2026'),
+    ('Effective 25 October 2026', 'Effective 27 September 2026'),
+    ('Last updated 25 October 2026', 'Last updated 27 September 2026'),
 ]:
     if ADS_SRC.count(_old) != 1:
         raise SystemExit(f'index.html 里找不到（或不唯一）: {_old[:60]}…')
     ADS_SRC = ADS_SRC.replace(_old, _new)
 
+# index.html 里 <!-- pgs --> … <!-- /pgs --> 是 PGS 披露（6 块）：PGS 里的页只去掉标记行，其余页整块剥掉并把为 PGS 改过的句子换回。
+_PGS_BLOCK = re.compile(r'<!-- pgs -->\n(.*?)<!-- /pgs -->\n', re.S)
+if len(_PGS_BLOCK.findall(ADS_SRC)) != 6:
+    raise SystemExit(f'index.html 里 pgs 块是 {len(_PGS_BLOCK.findall(ADS_SRC))} 个（应为 6）—— 改过 index.html 就同步改这里')
+PGS_SWAPS = [  # (index.html 现文, 不带 PGS 的页用的原文)
+    ('  <li>No user accounts of our own &mdash; there is nothing to register for with us. Where a game\n'
+     '      offers Google Play Games, signing in to it is optional and is handled by Google.</li>',
+     '  <li>No user accounts &mdash; there is nothing to register for and nothing to sign into</li>'),
+    ('<p>We use the following third-party services that process data:</p>', '<p>We use one third-party service that processes data:</p>'),
+]
 
-def ads_page(name, pkg):
-    date = '12 October 2026' if pkg == 'com.ballcollision.adeve' else DATE_ADS
-    s = ADS_SRC
+
+def pgs_variant(s, on):
+    if on:
+        return _PGS_BLOCK.sub(r'\1', s)
+    s = _PGS_BLOCK.sub('', s)
+    for cur, orig in PGS_SWAPS:
+        if s.count(cur) != 1:
+            raise SystemExit(f'index.html 里找不到（或不唯一）: {cur[:60]}…')
+        s = s.replace(cur, orig)
+    return s
+
+
+def ads_page(name, pkg, pgs=False):
+    date = DATE_PGS if pgs else '12 October 2026' if pkg == 'com.ballcollision.adeve' else DATE_ADS
+    s = pgs_variant(ADS_SRC, pgs)
     for old, new in [
         ('<title>Privacy Policy — Adevegames</title>', f'<title>Privacy Policy — {name}</title>'),
         ('<div class="meta">Adevegames &middot; Effective 27 September 2026</div>',
@@ -160,7 +187,7 @@ def ads_page(name, pkg):
 
 
 for slug, name, pkg in GAMES:
-    page = ads_page(html.escape(name), pkg) if slug in ADS else TPL.format(name=html.escape(name), pkg=pkg, date=DATE)
+    page = ads_page(html.escape(name), pkg, slug in PGS) if slug in ADS else TPL.format(name=html.escape(name), pkg=pkg, date=DATE)
     with open(os.path.join(HERE, slug + '.html'), 'w', encoding='utf-8', newline='\n') as f:
         f.write(page)
     print('https://jyzgo.github.io/privacy.github.io/%s.html' % slug)
