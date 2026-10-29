@@ -16,7 +16,7 @@ ADS = {'catcubeaway', 'catnapsudoku', 'catwatersort', 'jaderings', 'arrowdashvan
 # 2026-10-25 GamePublish/levelup_todo.md 全部 12 款一次加入（index.html = Solitaire 本身就带）；新游戏接 PGS 时加文件名（不是 slug）。
 # Data safety 同时换 +pgs 档（GamePublish/tools/play_datasafety.py）。
 PGS = {'puddingcatblocks', 'jaderings', 'spelldoku', 'catwatersort', 'arrowdashvane', 'catnapsudoku',
-       'ballcollision', 'catcubeaway', 'mosaicriders', 'loftyfloors', 'cubeblast3d'}
+       'ballcollision', 'catcubeaway', 'loftyfloors', 'cubeblast3d'}  # mosaicriders 2026-10-29 用户定不接 PGS
 GAMES = [  # (文件名, 英文名, 包名)
     ('catcubeaway', 'Cat Cube Away', 'com.adevegame.catcubeaway'),
     ('catnapsudoku', 'Cat Nap Sudoku', 'com.adevegame.catnapsudoku'),
@@ -166,7 +166,7 @@ def pgs_variant(s, on):
 
 
 def ads_page(name, pkg, pgs=False):
-    date = DATE_PGS if pgs else '12 October 2026' if pkg == 'com.ballcollision.adeve' else DATE_ADS
+    date = DATE_PGS if pgs else '12 October 2026' if pkg == 'com.ballcollision.adeve' else '29 October 2026' if pkg == 'com.adevegame.mosaicriders' else DATE_ADS
     s = pgs_variant(ADS_SRC, pgs)
     for old, new in [
         ('<title>Privacy Policy — Adevegames</title>', f'<title>Privacy Policy — {name}</title>'),
